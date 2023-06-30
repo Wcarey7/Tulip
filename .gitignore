@@ -6,3 +6,6 @@ bin-int/
 # Files
 *.user
 *.hint
+TulipProfile-Runtime.json
+TulipProfile-Shutdown.json
+TulipProfile-Startup.json

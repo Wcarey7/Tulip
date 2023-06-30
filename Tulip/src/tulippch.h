@@ -14,6 +14,7 @@
 #include <unordered_set>
 
 #include "Tulip/Core/Log.h"
+#include "Tulip/Debug/Instrumentor.h"
 
 #ifdef TULIP_PLATFORM_WINDOWS
     #include <Windows.h>

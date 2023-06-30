@@ -139,8 +139,12 @@ public:
 
     void OnUpdate(Tulip::Timestep ts) override
     {
+        TULIP_PROFILE_FUNCTION();
         // Update
-        m_CameraController.OnUpdate(ts);
+        {
+            TULIP_PROFILE_SCOPE("CameraController::OnUpdate");
+            m_CameraController.OnUpdate(ts);
+        }
 
         // Render
         Tulip::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
@@ -176,6 +180,7 @@ public:
 
     virtual void OnImGuiRender() override
     {
+        TULIP_PROFILE_FUNCTION();
         ImGui::Begin("Settings");
         ImGui::ColorEdit3("Square Color", glm::value_ptr(m_SquareColor));
         ImGui::End();

@@ -163,6 +163,7 @@
     <ClInclude Include="src\Tulip\Core\MouseButtonCodes.h" />
     <ClInclude Include="src\Tulip\Core\Timestep.h" />
     <ClInclude Include="src\Tulip\Core\Window.h" />
+    <ClInclude Include="src\Tulip\Debug\Instrumentor.h" />
     <ClInclude Include="src\Tulip\Events\ApplicationEvent.h" />
     <ClInclude Include="src\Tulip\Events\Event.h" />
     <ClInclude Include="src\Tulip\Events\KeyEvent.h" />
