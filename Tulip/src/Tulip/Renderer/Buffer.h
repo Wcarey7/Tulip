@@ -24,7 +24,7 @@ namespace Tulip
             case ShaderDataType::Int4:      return 4 * 4;
             case ShaderDataType::Bool:      return 1;
         }
-        TULIP_CORE_ASSERT(false, "Unknown ShadeDataType.");
+        TULIP_CORE_ASSERT(false, "Unknown ShaderDataType.");
         return 0;
     }
 
@@ -36,7 +36,7 @@ namespace Tulip
         uint32_t Offset;
         uint32_t Normalized;
 
-        BufferElement() {}
+        BufferElement() = default;
 
         BufferElement(ShaderDataType type, const std::string& name, bool normalized = false)
             : Name(name), Type(type), Size(ShaderDataTypeSize(type)), Offset(0), Normalized(normalized)
@@ -59,7 +59,7 @@ namespace Tulip
             case ShaderDataType::Int4:      return 4;
             case ShaderDataType::Bool:      return 1;
             }
-            TULIP_CORE_ASSERT(false, "Unknown ShadeDataType.");
+            TULIP_CORE_ASSERT(false, "Unknown ShaderDataType.");
             return 0;
         }
     };
@@ -110,6 +110,8 @@ namespace Tulip
 
         virtual const BufferLayout& GetLayout() const = 0;
         virtual void SetLayout(const BufferLayout& layout) = 0;
+
+        virtual void SetData(const void* data, uint32_t size) = 0;
 
         static VertexBuffer* Create(float* vertices, uint32_t size);
     };

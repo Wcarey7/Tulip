@@ -140,7 +140,7 @@ namespace Tulip
     };
 }
 
-#define TULIP_PROFILE 1
+#define TULIP_PROFILE 0
 #if TULIP_PROFILE
     #define TULIP_PROFILE_BEGIN_SESSION(name, filepath) ::Tulip::Instrumentor::Get().BeginSession(name, filepath)
     #define TULIP_PROFILE_END_SESSION() ::Tulip::Instrumentor::Get().EndSession()
