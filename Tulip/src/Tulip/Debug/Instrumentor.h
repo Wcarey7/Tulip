@@ -20,12 +20,15 @@
 #include <chrono>
 #include <algorithm>
 #include <fstream>
-
+#include <iomanip>
+#include <string>
 #include <thread>
 
 
 namespace Tulip
 {
+    using FloatingPointMicroseconds = std::chrono::duration<double, std::micro>;
+
     struct ProfileResult
     {
         std::string Name;

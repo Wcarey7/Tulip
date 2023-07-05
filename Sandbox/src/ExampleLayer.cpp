@@ -1,24 +1,21 @@
 #include "Tulip.h"
-//#include "Tulip/Core/EntryPoint.h"
-#include "Platform/OpenGL/OpenGLShader.h"
+
+#include "ExampleLayer.h"
 
 #include <imgui/imgui.h>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
 
-class ExampleLayerOld : public Tulip::Layer
-{
-public:
-    ExampleLayerOld()
-        : Layer("Example"), m_CameraController(1280.0f / 720.0f, true)
+ExampleLayer::ExampleLayer()
+        : Layer("ExampleLayer"), m_CameraController(1280.0f / 720.0f, true)
     {
         m_VertexArray = Tulip::VertexArray::Create();
 
         float vertices[3 * 3] = {
             -0.5f, -0.5f, 0.0f,
-             0.5f, -0.5f, 0.0f,
-             0.0f, 0.5f, 0.0f
+            0.5f, -0.5f, 0.0f,
+            0.0f, 0.5f, 0.0f
         };
 
         Tulip::Ref<Tulip::VertexBuffer> vertexBuffer = Tulip::VertexBuffer::Create(vertices, sizeof(vertices));
@@ -38,8 +35,8 @@ public:
 
         float squareVertices[5 * 4] = {
             -0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
-             0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
-             0.5f,  0.5f, 0.0f, 1.0f, 1.0f,
+            0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+            0.5f,  0.5f, 0.0f, 1.0f, 1.0f,
             -0.5f,  0.5f, 0.0f, 0.0f, 1.0f
         };
 
@@ -47,7 +44,7 @@ public:
         squareVB->SetLayout({
             { Tulip::ShaderDataType::Float3, "a_Position" },
             { Tulip::ShaderDataType::Float2, "a_TexCoord" }
-        });
+            });
         m_SquareVA->AddVertexBuffer(squareVB);
 
         uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
@@ -126,15 +123,23 @@ public:
         m_FlatColorShader = Tulip::Shader::Create("FlatColor", flatColorShaderVertexSrc, flatColorShaderFragmentSrc);
 
         auto TextureShader = m_ShaderLibrary.Load("assets/shaders/Texture.glsl");
-        
+
         m_Texture = Tulip::Texture2D::Create("assets/textures/Checkerboard.png");
 
         TextureShader->Bind();
         TextureShader->SetInt("u_Texture", 0);
     }
 
+    void ExampleLayer::OnAttach()
+    {
+    }
 
-    void OnUpdate(Tulip::Timestep ts) override
+    void ExampleLayer::OnDetach()
+    {
+    }
+
+
+    void ExampleLayer::OnUpdate(Tulip::Timestep ts)
     {
         TULIP_PROFILE_FUNCTION();
         // Update
@@ -163,7 +168,7 @@ public:
                 Tulip::Renderer::Submit(m_FlatColorShader, m_SquareVA, transform);
             }
         }
-        
+
         auto TextureShader = m_ShaderLibrary.Get("Texture");
         m_Texture->Bind();
         Tulip::Renderer::Submit(TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
@@ -171,7 +176,7 @@ public:
         Tulip::Renderer::EndScene();
     }
 
-    virtual void OnImGuiRender() override
+    void ExampleLayer::OnImGuiRender()
     {
         TULIP_PROFILE_FUNCTION();
         ImGui::Begin("Settings");
@@ -179,43 +184,8 @@ public:
         ImGui::End();
     }
 
-    void OnEvent(Tulip::Event& e) override
+    void ExampleLayer::OnEvent(Tulip::Event& e)
     {
         m_CameraController.OnEvent(e);
     }
 
-private:
-    Tulip::ShaderLibrary m_ShaderLibrary;
-    Tulip::Ref<Tulip::Shader> m_Shader;
-    Tulip::Ref<Tulip::VertexArray> m_VertexArray;
-
-    Tulip::Ref<Tulip::Shader> m_FlatColorShader, m_TextureShader;
-    Tulip::Ref<Tulip::VertexArray> m_SquareVA;
-
-    Tulip::Ref<Tulip::Texture2D> m_Texture;
-
-    Tulip::OrthographicCameraController m_CameraController;
-
-    glm::vec3 m_SquareColor = { 0.2f, 0.3f, 0.8f };
-};
-
-
-//class Sandbox : public Tulip::Application
-//{
-//public:
-//    Sandbox()
-//    {
-//        PushLayer(new ExampleLayerOld());
-//    }
-//
-//    ~Sandbox()
-//    {
-//
-//    }
-//};
-//
-//
-//Tulip::Application* Tulip::CreateApplication()
-//{
-//    return new Sandbox();
-//}

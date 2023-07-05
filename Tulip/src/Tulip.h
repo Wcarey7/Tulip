@@ -26,4 +26,4 @@
 #include "Tulip/Renderer/OrthographicCamera.h"
 // ---------------------------
 
-#include "Tulip/Core/EntryPoint.h"
+//#include "Tulip/Core/EntryPoint.h"
