@@ -10,6 +10,7 @@ namespace Tulip
     void Renderer::Init()
     {
         RenderCommand::Init();
+        Renderer2D::Init();
     }
 
     void Renderer::Shutdown()

@@ -2,6 +2,7 @@
 
 
 // For use by Tulip applications
+#include "Tulip/Core/Core.h"
 #include "Tulip/Core/Application.h"
 #include "Tulip/Core/Layer.h"
 #include "Tulip/Core/Log.h"
@@ -16,6 +17,7 @@
 
 // ---Renderer-------------
 #include "Tulip/Renderer/Renderer.h"
+#include "Tulip/Renderer/Renderer2D.h"
 #include "Tulip/Renderer/RenderCommand.h"
 
 #include "Tulip/Renderer/Buffer.h"
@@ -25,5 +27,3 @@
 
 #include "Tulip/Renderer/OrthographicCamera.h"
 // ---------------------------
-
-//#include "Tulip/Core/EntryPoint.h"
