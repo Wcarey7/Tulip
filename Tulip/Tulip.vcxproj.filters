@@ -1414,6 +1414,7 @@
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
     <ClInclude Include="src\Tulip\Debug\Instrumentor.h" />
+    <ClInclude Include="src\Tulip\Renderer\Renderer2D.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
@@ -1493,5 +1494,6 @@
     </ClCompile>
     <ClCompile Include="src\Tulip\Renderer\GraphicsContext.cpp" />
     <ClCompile Include="src\Tulip\Core\Window.cpp" />
+    <ClCompile Include="src\Tulip\Renderer\Renderer2D.cpp" />
   </ItemGroup>
 </Project>

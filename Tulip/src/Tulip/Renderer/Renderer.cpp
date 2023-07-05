@@ -1,5 +1,6 @@
 #include "tulippch.h"
 #include "Tulip/Renderer/Renderer.h"
+#include "Tulip/Renderer/Renderer2D.h"
 
 
 namespace Tulip 
@@ -11,10 +12,10 @@ namespace Tulip
         RenderCommand::Init();
     }
 
-    //void Renderer::Shutdown()
-    //{
-    //    //Renderer2D::Shutdown();
-    //}
+    void Renderer::Shutdown()
+    {
+        Renderer2D::Shutdown();
+    }
 
     void Renderer::OnWindowResize(uint32_t width, uint32_t height)
     {
