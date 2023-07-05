@@ -27,11 +27,11 @@ namespace Tulip
 
     private:
         virtual void Init(const WindowProps& props);
-        virtual void Shutdown();
+        //virtual void Shutdown();
 
     private:
         GLFWwindow* m_Window;
-        GraphicsContext* m_Context;
+        Scope<GraphicsContext> m_Context;
 
         struct WindowData
         {

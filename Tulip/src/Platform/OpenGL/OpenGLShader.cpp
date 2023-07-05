@@ -1,5 +1,6 @@
 #include "tulippch.h"
-#include "OpenGLShader.h"
+#include "Platform/OpenGL/OpenGLShader.h"
+
 #include <filesystem>
 #include <fstream>
 #include <glad/glad.h>
@@ -86,6 +87,7 @@ namespace Tulip
             TULIP_CORE_ASSERT(ShaderTypeFromString(type), "Invalid shader type specified");
 
             size_t nextLinePos = source.find_first_not_of("\r\n", eol);
+            TULIP_CORE_ASSERT(nextLinePos != std::string::npos, "Syntax error");
             pos = source.find(typeToken, nextLinePos);
             shaderSources[ShaderTypeFromString(type)] = source.substr(nextLinePos, pos - (nextLinePos == std::string::npos ? source.size() - 1 : nextLinePos));
         }
@@ -105,7 +107,6 @@ namespace Tulip
             const std::string& source = kv.second;
 
             GLuint shader = glCreateShader(type);
-
 
             const GLchar* sourceCStr = source.c_str();
             glShaderSource(shader, 1, &sourceCStr, 0);
@@ -142,6 +143,7 @@ namespace Tulip
         // Vertex and fragment shaders are successfully compiled.
         // Now time to link them together into a program.
         // Get a program object.
+ 
 
         // Link our program
         glLinkProgram(program);

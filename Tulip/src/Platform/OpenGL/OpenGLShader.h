@@ -3,8 +3,8 @@
 #include "Tulip/Renderer/Shader.h"
 #include <glm/glm.hpp>
 
-
 typedef unsigned int GLenum;
+
 
 namespace Tulip 
 {

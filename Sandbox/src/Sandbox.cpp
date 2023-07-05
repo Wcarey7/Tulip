@@ -1,7 +1,8 @@
 #include "Tulip.h"
 #include "Tulip/Core/EntryPoint.h"
-#include "imgui/imgui.h"
 #include "Platform/OpenGL/OpenGLShader.h"
+
+#include <imgui/imgui.h>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
@@ -20,8 +21,7 @@ public:
              0.0f, 0.5f, 0.0f
         };
 
-        std::shared_ptr<Tulip::VertexBuffer> vertexBuffer;
-        vertexBuffer.reset(Tulip::VertexBuffer::Create(vertices, sizeof(vertices)));
+        Tulip::Ref<Tulip::VertexBuffer> vertexBuffer = Tulip::VertexBuffer::Create(vertices, sizeof(vertices));
         Tulip::BufferLayout layout = {
             { Tulip::ShaderDataType::Float3, "a_Position" },
             { Tulip::ShaderDataType::Float4, "a_Color" }
@@ -31,8 +31,7 @@ public:
         m_VertexArray->AddVertexBuffer(vertexBuffer);
 
         uint32_t indices[3] = { 0, 1, 2 };
-        std::shared_ptr<Tulip::IndexBuffer> indexBuffer;
-        indexBuffer.reset(Tulip::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
+        Tulip::Ref<Tulip::IndexBuffer> indexBuffer = Tulip::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t));
         m_VertexArray->SetIndexBuffer(indexBuffer);
 
         m_SquareVA = Tulip::VertexArray::Create();
@@ -44,8 +43,7 @@ public:
             -0.5f,  0.5f, 0.0f, 0.0f, 1.0f
         };
 
-        std::shared_ptr<Tulip::VertexBuffer> squareVB;
-        squareVB.reset(Tulip::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
+        Tulip::Ref<Tulip::VertexBuffer> squareVB = Tulip::VertexBuffer::Create(squareVertices, sizeof(squareVertices));
         squareVB->SetLayout({
             { Tulip::ShaderDataType::Float3, "a_Position" },
             { Tulip::ShaderDataType::Float2, "a_TexCoord" }
@@ -53,8 +51,7 @@ public:
         m_SquareVA->AddVertexBuffer(squareVB);
 
         uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
-        std::shared_ptr<Tulip::IndexBuffer> squareIB;
-        squareIB.reset(Tulip::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
+        Tulip::Ref<Tulip::IndexBuffer> squareIB = Tulip::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t));
         m_SquareVA->SetIndexBuffer(squareIB);
 
 
@@ -132,8 +129,8 @@ public:
         
         m_Texture = Tulip::Texture2D::Create("assets/textures/Checkerboard.png");
 
-        std::dynamic_pointer_cast<Tulip::OpenGLShader>(TextureShader)->Bind();
-        std::dynamic_pointer_cast<Tulip::OpenGLShader>(TextureShader)->UploadUniformInt("u_Texture", 0);
+        TextureShader->Bind();
+        TextureShader->SetInt("u_Texture", 0);
     }
 
 
@@ -154,9 +151,8 @@ public:
 
         glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
-        std::dynamic_pointer_cast<Tulip::OpenGLShader>(m_FlatColorShader)->Bind();
-        std::dynamic_pointer_cast<Tulip::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat3("u_Color", m_SquareColor);
-
+        m_FlatColorShader->Bind();
+        m_FlatColorShader->SetFloat3("u_Color", m_SquareColor);
 
         for (int y = 0; y < 20; y++)
         {
@@ -171,9 +167,6 @@ public:
         auto TextureShader = m_ShaderLibrary.Get("Texture");
         m_Texture->Bind();
         Tulip::Renderer::Submit(TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
-
-        //Triangle
-        //Tulip::Renderer::Submit(m_Shader, m_VertexArray);
 
         Tulip::Renderer::EndScene();
     }

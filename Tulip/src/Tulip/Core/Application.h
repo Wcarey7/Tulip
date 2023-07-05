@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Core.h"
-#include "Window.h"
+#include "Tulip/Core/Core.h"
+#include "Tulip/Core/Window.h"
 #include "Tulip/Core/LayerStack.h"
 #include "Tulip/Events/Event.h"
 #include "Tulip/Events/ApplicationEvent.h"
@@ -32,7 +32,7 @@ namespace Tulip
         bool OnWindowClose(WindowCloseEvent& e);
         bool OnWindowResize(WindowResizeEvent& e);
     private:
-        std::unique_ptr<Window> m_Window;
+        Scope<Window> m_Window;
         ImGuiLayer* m_ImGuiLayer;
 
         bool m_Running = true;

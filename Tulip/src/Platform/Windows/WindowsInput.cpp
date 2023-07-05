@@ -1,12 +1,12 @@
 #include "tulippch.h"
-#include "WindowsInput.h"
+#include "Platform/Windows/WindowsInput.h"
 #include "Tulip/Core/Application.h"
 #include <GLFW/glfw3.h>
 
 
 namespace Tulip 
 {
-    Input* Input::s_Instance  = new WindowsInput();
+    Scope<Input> Input::s_Instance = CreateScope<WindowsInput>();
 
     bool WindowsInput::IsKeyPressedImpl(int keycode)
     {

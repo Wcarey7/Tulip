@@ -1,11 +1,13 @@
 #include "tulippch.h"
-#include "ImGuiLayer.h"
+#include "Tulip/ImGui/ImGuiLayer.h"
 
-#include "backends/imgui_impl_glfw.h"
-#include "backends/imgui_impl_opengl3.h"
+#include <imgui_internal.h>
+#include <imgui.h>
+#include <backends/imgui_impl_glfw.h>
+#include <backends/imgui_impl_opengl3.h>
 #include "Tulip/Core/Application.h"
 
-#include <imgui.h>
+
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>
 
@@ -23,7 +25,7 @@ namespace Tulip
         IMGUI_CHECKVERSION();
         ImGui::CreateContext();
 
-        ImGuiIO& io = ImGui::GetIO();
+        ImGuiIO& io = ImGui::GetIO(); (void)io;
         io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;       // Enable Keyboard Controls
         io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;           // Enable Docking
         io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;         // Enable Multi-Viewport / Platform Windows

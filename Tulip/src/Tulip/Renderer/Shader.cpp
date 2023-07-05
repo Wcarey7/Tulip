@@ -1,7 +1,7 @@
 #include "tulippch.h"
-#include "Shader.h"
 
-#include "Renderer.h"
+#include "Tulip/Renderer/Shader.h"
+#include "Tulip/Renderer/Renderer.h"
 #include "Platform/OpenGL/OpenGLShader.h"
 
 
@@ -12,7 +12,7 @@ namespace Tulip
         switch (Renderer::GetAPI())
         {
             case RendererAPI::API::None:     TULIP_CORE_ASSERT(false, "RendererAPI::None is currently not supported"); return nullptr;
-            case RendererAPI::API::OpenGL:   return std::make_shared<OpenGLShader>(filepath);
+            case RendererAPI::API::OpenGL:   return CreateRef<OpenGLShader>(filepath);
         }
 
         TULIP_CORE_ASSERT(false, "Unknown RendererAPI");
@@ -24,7 +24,7 @@ namespace Tulip
         switch (Renderer::GetAPI())
         {
             case RendererAPI::API::None:     TULIP_CORE_ASSERT(false, "RendererAPI::None is currently not supported"); return nullptr;
-            case RendererAPI::API::OpenGL:   return std::make_shared<OpenGLShader>(name, vertexSrc, fragmentSrc);
+            case RendererAPI::API::OpenGL:   return CreateRef<OpenGLShader>(name, vertexSrc, fragmentSrc);
         }
 
         TULIP_CORE_ASSERT(false, "Unknown RendererAPI");

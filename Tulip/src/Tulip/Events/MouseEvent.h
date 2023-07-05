@@ -1,7 +1,6 @@
 #pragma once
 
-#include "Event.h"
-#include "tulippch.h"
+#include "Tulip/Events/Event.h"
 
 
 namespace Tulip 
