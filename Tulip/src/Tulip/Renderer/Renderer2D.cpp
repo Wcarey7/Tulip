@@ -37,6 +37,8 @@ namespace Tulip
 
         std::array<Ref<Texture2D>, MaxTextureSlots> TextureSlots;
         uint32_t TextureSlotIndex = 1; // 0 = white texture
+
+        glm::vec4 QuadVertexPositions[4];
     };
 
     static Renderer2DData s_Data;
@@ -90,6 +92,8 @@ namespace Tulip
 
         // Set all texture slots to 0
         s_Data.TextureSlots[0] = s_Data.WhiteTexture;
+
+        s_Data.QuadVertexPositions[0] = { -0.5f, -0.5f, 0.0f, 1.0f };
     }
 
     void Renderer2D::Shutdown()
