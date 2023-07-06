@@ -127,6 +127,9 @@ namespace Tulip
 
     void Renderer2D::Flush()
     {
+        if (s_Data.QuadIndexCount == 0)
+            return; // Nothing to draw
+
         for (uint32_t i = 0; i < s_Data.TextureSlotIndex; i++)
             s_Data.TextureSlots[i]->Bind(i);
 
@@ -186,7 +189,6 @@ namespace Tulip
     {
 
         constexpr size_t quadVertexCount = 4;
-        constexpr glm::vec4 color = { 1.0f, 1.0f, 1.0f, 1.0f };
         constexpr glm::vec2 textureCoords[] = { {0.0f, 0.0f}, {1.0f, 0.0f}, {1.0f, 1.0f}, {0.0f, 1.0f} };
 
         if (s_Data.QuadIndexCount >= Renderer2DData::MaxIndices)
@@ -218,7 +220,7 @@ namespace Tulip
         for (size_t i = 0; i < quadVertexCount; i++)
         {
             s_Data.QuadVertexBufferptr->Position = transform * s_Data.QuadVertexPositions[i];
-            s_Data.QuadVertexBufferptr->Color = color;
+            s_Data.QuadVertexBufferptr->Color = tintColor;
             s_Data.QuadVertexBufferptr->TexCoord = textureCoords[i];
             s_Data.QuadVertexBufferptr->TexIndex = textureIndex;
             s_Data.QuadVertexBufferptr->TilingFactor = tilingFactor;
@@ -262,7 +264,6 @@ namespace Tulip
         s_Data.QuadIndexCount += 6;
 
         s_Data.Stats.QuadCount++;
-
     }
 
     void Renderer2D::DrawRotatedQuad(const glm::vec2& position, const glm::vec2& size, float rotation, const Ref<Texture2D>& texture, float tilingFactor, const glm::vec4& tintColor)
@@ -273,7 +274,6 @@ namespace Tulip
     void Renderer2D::DrawRotatedQuad(const glm::vec3& position, const glm::vec2& size, float rotation, const Ref<Texture2D>& texture, float tilingFactor, const glm::vec4& tintColor)
     {
         constexpr size_t quadVertexCount = 4;
-        constexpr glm::vec4 color = { 1.0f, 1.0f, 1.0f, 1.0f };
         constexpr glm::vec2 textureCoords[] = { {0.0f, 0.0f}, {1.0f, 0.0f}, {1.0f, 1.0f}, {0.0f, 1.0f} };
 
         if (s_Data.QuadIndexCount >= Renderer2DData::MaxIndices)
@@ -306,7 +306,7 @@ namespace Tulip
         for (size_t i = 0; i < quadVertexCount; i++)
         {
             s_Data.QuadVertexBufferptr->Position = transform * s_Data.QuadVertexPositions[i];
-            s_Data.QuadVertexBufferptr->Color = color;
+            s_Data.QuadVertexBufferptr->Color = tintColor;
             s_Data.QuadVertexBufferptr->TexCoord = textureCoords[i];
             s_Data.QuadVertexBufferptr->TexIndex = textureIndex;
             s_Data.QuadVertexBufferptr->TilingFactor = tilingFactor;
