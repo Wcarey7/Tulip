@@ -23,14 +23,16 @@ void Sandbox2D::OnUpdate(Tulip::Timestep ts)
 {
     m_CameraController.OnUpdate(ts);
 
+    Tulip::Renderer2D::ResetStats();
+
     Tulip::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
     Tulip::RenderCommand::Clear();
 
     Tulip::Renderer2D::BeginScene(m_CameraController.GetCamera());
-    //Tulip::Renderer2D::DrawRotatedQuad({ -1.0f, 0.0f }, { 0.8f, 0.8f }, glm::radians(-45.0f), { 0.8f, 0.2f, 0.3f, 1.0f });
+    Tulip::Renderer2D::DrawRotatedQuad({ 1.0f, 0.0f }, { 0.8f, 0.8f }, -45.0f, { 0.8f, 0.2f, 0.3f, 1.0f });
     Tulip::Renderer2D::DrawQuad({ -1.0f, 0.0f }, { 0.8f, 0.8f }, { 0.8f, 0.2f, 0.3f, 1.0f });
     Tulip::Renderer2D::DrawQuad({ 0.5f, -0.5f }, { 0.5f, 0.75f }, m_SquareColor);
-    Tulip::Renderer2D::DrawQuad({ -5.0f, -5.0f, -0.1f }, { 10.0f, 10.0f }, m_CheckerboardTexture, 10.0f);
+    Tulip::Renderer2D::DrawQuad({ 0.0f, 0.0f, -0.1f }, { 10.0f, 10.0f }, m_CheckerboardTexture, 10.0f);
     //Tulip::Renderer2D::DrawQuad({ -0.5f, -0.5f, 0.0f }, { 1.0f, 1.0f }, m_CheckerboardTexture, 20.0f);
     Tulip::Renderer2D::EndScene();
 }
@@ -38,6 +40,14 @@ void Sandbox2D::OnUpdate(Tulip::Timestep ts)
 void Sandbox2D::OnImGuiRender()
 {
     ImGui::Begin("Settings");
+
+    auto stats = Tulip::Renderer2D::GetStats();
+    ImGui::Text("Renderer2D Stats:");
+    ImGui::Text("Draw Calls: %d", stats.DrawCalls);
+    ImGui::Text("Quads: %d", stats.QuadCount);
+    ImGui::Text("Vertices: %d", stats.GetTotalVertexCount());
+    ImGui::Text("Indices: %d", stats.GetTotalIndexCount());
+
     ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
     ImGui::End();
 }
