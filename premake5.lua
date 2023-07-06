@@ -20,11 +20,11 @@ IncludeDir["ImGui"] = "Tulip/vendor/imgui"
 IncludeDir["glm"] = "Tulip/vendor/glm"
 IncludeDir["stb_image"] = "Tulip/vendor/stb_image"
 
-
-include "Tulip/vendor/GLFW"
-include "Tulip/vendor/Glad"
-include "Tulip/vendor/imgui"
-
+group "dependencies"
+    include "Tulip/vendor/GLFW"
+    include "Tulip/vendor/Glad"
+    include "Tulip/vendor/imgui"
+group ""
 
 project "Tulip"
     location "Tulip"

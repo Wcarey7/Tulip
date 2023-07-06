@@ -21,7 +21,7 @@ private:
     // Temp
     Tulip::Ref<Tulip::VertexArray> m_SquareVA;
     Tulip::Ref<Tulip::Shader> m_FlatColorShader;
-
+    Tulip::Ref<Tulip::Framebuffer> m_Framebuffer;
     Tulip::Ref<Tulip::Texture2D> m_CheckerboardTexture;
 
     glm::vec4 m_SquareColor = { 0.2f, 0.3f, 0.8f, 1.0f };

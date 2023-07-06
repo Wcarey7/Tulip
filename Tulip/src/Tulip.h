@@ -22,6 +22,7 @@
 
 #include "Tulip/Renderer/Buffer.h"
 #include "Tulip/Renderer/Shader.h"
+#include "Tulip/Renderer/Framebuffer.h"
 #include "Tulip/Renderer/Texture.h"
 #include "Tulip/Renderer/VertexArray.h"
 
