@@ -134,6 +134,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\ExampleLayer.h" />
+    <ClInclude Include="src\Sandbox2D.h" />
+  </ItemGroup>
+  <ItemGroup>
     <ClCompile Include="src\ExampleLayer.cpp" />
     <ClCompile Include="src\Sandbox.cpp" />
     <ClCompile Include="src\Sandbox2D.cpp" />
@@ -143,17 +147,6 @@
     <ProjectReference Include="..\Tulip\Tulip.vcxproj">
       <Project>{330C310E-9F20-59BF-68A2-FC1ED47555F0}</Project>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="assets\shaders\FlatColor.glsl" />
-    <None Include="assets\shaders\Texture.glsl" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="assets\textures\Checkerboard.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="src\ExampleLayer.h" />
-    <ClInclude Include="src\Sandbox2D.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

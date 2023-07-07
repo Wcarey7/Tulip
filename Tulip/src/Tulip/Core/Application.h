@@ -14,7 +14,7 @@ namespace Tulip
     class Application
     {
     public:
-        Application();
+        Application(const std::string& name = "Tulip App");
         virtual ~Application();
 
         void Run();
