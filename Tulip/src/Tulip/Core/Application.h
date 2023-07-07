@@ -9,6 +9,8 @@
 #include "Tulip/ImGui/ImGuiLayer.h"
 
 
+int main(int argc, char** argv);
+
 namespace Tulip 
 {
     class Application
@@ -47,6 +49,7 @@ namespace Tulip
 
     private:
         static Application* s_Instance;
+        friend int ::main(int argc, char** argv);
     };
 
     Application* CreateApplication();
