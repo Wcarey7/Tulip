@@ -1,6 +1,6 @@
 workspace "Tulip"
     architecture "x86_64"
-    startproject "Sandbox"
+    startproject "Tulip-Editor"
 
 
     configurations
@@ -105,9 +105,8 @@ project "Tulip"
         optimize "on"
 
 
-
-project "Tulip-Editor"
-    location "Tulip-Editor"
+project "Sandbox"
+    location "Sandbox"
     kind "ConsoleApp"
     language "C++"
     cppdialect "C++17"
@@ -160,8 +159,9 @@ project "Tulip-Editor"
         runtime "Release"
         optimize "on"
 
-        project "Sandbox"
-    location "Sandbox"
+
+project "Tulip-Editor"
+    location "Tulip-Editor"
     kind "ConsoleApp"
     language "C++"
     cppdialect "C++17"
