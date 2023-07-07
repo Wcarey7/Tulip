@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Tulip/Events/Event.h"
+#include "Tulip/Core/Input.h"
 
 
 namespace Tulip 
@@ -54,21 +55,21 @@ namespace Tulip
     class TULIP_API MouseButtonEvent : public Event
     {
     public:
-        inline int GetMouseButton() const { return m_Button; }
+        inline MouseCode GetMouseButton() const { return m_Button; }
 
         EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
 
     protected:
-        MouseButtonEvent(int button)
+        MouseButtonEvent(MouseCode button)
             : m_Button(button) {}
 
-        int m_Button;
+        MouseCode m_Button;
     };
 
     class TULIP_API MouseButtonPressedEvent : public MouseButtonEvent
     {
     public:
-        MouseButtonPressedEvent(int button)
+        MouseButtonPressedEvent(MouseCode button)
             : MouseButtonEvent(button) {}
 
         std::string ToString() const override
@@ -84,7 +85,7 @@ namespace Tulip
     class TULIP_API MouseButtonReleasedEvent : public MouseButtonEvent
     {
     public:
-        MouseButtonReleasedEvent(int button)
+        MouseButtonReleasedEvent(MouseCode button)
             : MouseButtonEvent(button) {}
 
         std::string ToString() const override

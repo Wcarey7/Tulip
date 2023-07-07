@@ -24,7 +24,7 @@ namespace Tulip
 
     WindowsWindow::~WindowsWindow()
     {
-        //Shutdown();
+        Shutdown();
     }
 
     void WindowsWindow::Init(const WindowProps& props)
@@ -79,19 +79,19 @@ namespace Tulip
             {
                 case GLFW_PRESS:
                 {
-                    KeyPressedEvent event(key, 0);
+                    KeyPressedEvent event(static_cast<KeyCode>(key), 0);
                     data.EventCallback(event);
                     break;
                 }
                 case GLFW_RELEASE:
                 {
-                    KeyReleasedEvent event(key);
+                    KeyReleasedEvent event(static_cast<KeyCode>(key));
                     data.EventCallback(event);
                     break;
                 }
                 case GLFW_REPEAT:
                 {
-                    KeyPressedEvent event(key, 1);
+                    KeyPressedEvent event(static_cast<KeyCode>(key), 1);
                     data.EventCallback(event);
                     break;
                 }
@@ -102,7 +102,7 @@ namespace Tulip
         {
             WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
-            KeyTypedEvent event(keycode);
+            KeyTypedEvent event(static_cast<KeyCode>(keycode));
             data.EventCallback(event);
         });
 
@@ -114,13 +114,13 @@ namespace Tulip
             {
                 case GLFW_PRESS:
                 {
-                    MouseButtonPressedEvent event(button);
+                    MouseButtonPressedEvent event(static_cast<MouseCode>(button));
                     data.EventCallback(event);
                     break;
                 }
                 case GLFW_RELEASE:
                 {
-                    MouseButtonReleasedEvent event(button);
+                    MouseButtonReleasedEvent event(static_cast<MouseCode>(button));
                     data.EventCallback(event);
                     break;
                 }
@@ -147,16 +147,16 @@ namespace Tulip
     }
 
 
-    //void WindowsWindow::Shutdown()
-    //{
-    //    glfwDestroyWindow(m_Window);
-    //    --s_GLFWWindowCount;
+    void WindowsWindow::Shutdown()
+    {
+        glfwDestroyWindow(m_Window);
+        --s_GLFWWindowCount;
 
-    //    if (s_GLFWWindowCount == 0)
-    //    {
-    //        glfwTerminate();
-    //    }
-    //}
+        if (s_GLFWWindowCount == 0)
+        {
+            glfwTerminate();
+        }
+    }
 
     void WindowsWindow::OnUpdate()
     {
