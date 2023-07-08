@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Tulip/Renderer/Camera.h"
+#include "Tulip/Scene/SceneCamera.h"
 #include <glm/glm.hpp>
 
 
@@ -41,12 +41,11 @@ namespace Tulip
 
     struct CameraComponent
     {
-        Tulip::Camera Camera;
+        SceneCamera Camera;
         bool Primary = true;
+        bool FixedAspectRatio = false;
 
         CameraComponent() = default;
         CameraComponent(const CameraComponent&) = default;
-        CameraComponent(const glm::mat4& projection)
-            : Camera(projection) {}
     };
 }
