@@ -4,6 +4,8 @@
 #include "Tulip/Core/KeyCodes.h"
 #include "Tulip/Core/MouseButtonCodes.h"
 
+#include <glm/glm.hpp>
+
 
 namespace Tulip 
 {
