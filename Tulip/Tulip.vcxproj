@@ -187,6 +187,7 @@
     <ClInclude Include="src\Tulip\Scene\Scene.h" />
     <ClInclude Include="src\tulippch.h" />
     <ClInclude Include="src\Tulip\Scene\SceneCamera.h" />
+    <ClInclude Include="src\Tulip\Scene\ScriptableEntity.h" />
     <ClInclude Include="vendor\glm\glm\common.hpp" />
     <ClInclude Include="vendor\glm\glm\detail\_features.hpp" />
     <ClInclude Include="vendor\glm\glm\detail\_fixes.hpp" />

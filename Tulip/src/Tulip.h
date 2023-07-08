@@ -17,6 +17,7 @@
 
 #include "Tulip/Scene/Scene.h"
 #include "Tulip/Scene/Entity.h"
+#include "Tulip/Scene/ScriptableEntity.h"
 #include "Tulip/Scene/Components.h"
 
 // ---Renderer-------------

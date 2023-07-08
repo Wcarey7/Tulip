@@ -1437,6 +1437,7 @@
     <ClInclude Include="src\Tulip\Scene\Entity.h" />
     <ClInclude Include="src\Tulip\Renderer\Camera.h" />
     <ClInclude Include="src\Tulip\Scene\SceneCamera.h" />
+    <ClInclude Include="src\Tulip\Scene\ScriptableEntity.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
