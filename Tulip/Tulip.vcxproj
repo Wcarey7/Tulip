@@ -170,6 +170,7 @@
     <ClInclude Include="src\Tulip\Events\MouseEvent.h" />
     <ClInclude Include="src\Tulip\ImGui\ImGuiLayer.h" />
     <ClInclude Include="src\Tulip\Renderer\Buffer.h" />
+    <ClInclude Include="src\Tulip\Renderer\Camera.h" />
     <ClInclude Include="src\Tulip\Renderer\Framebuffer.h" />
     <ClInclude Include="src\Tulip\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\Tulip\Renderer\OrthographicCamera.h" />

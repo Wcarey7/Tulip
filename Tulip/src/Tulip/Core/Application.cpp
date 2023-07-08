@@ -54,6 +54,7 @@ namespace Tulip
         dispatcher.Dispatch<WindowCloseEvent>(TULIP_BIND_EVENT_FN(Application::OnWindowClose));
         dispatcher.Dispatch<WindowResizeEvent>(TULIP_BIND_EVENT_FN(Application::OnWindowResize));
 
+        // 'it' isn an iterator. Specifically here, a reverese iterator
         for (auto it = m_LayerStack.rbegin(); it != m_LayerStack.rend(); ++it)
         {
             if (e.Handled)

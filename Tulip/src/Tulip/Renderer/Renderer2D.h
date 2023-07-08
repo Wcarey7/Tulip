@@ -2,6 +2,7 @@
 
 #include "Tulip/Renderer/OrthographicCamera.h"
 #include "Tulip/Renderer/Texture.h"
+#include "Tulip/Renderer/Camera.h"
 
 
 namespace Tulip
@@ -13,6 +14,8 @@ namespace Tulip
         static void Shutdown();
 
         static void BeginScene(const OrthographicCamera& camera);
+        static void BeginScene(const Camera& camera, const glm::mat4& transform);
+
         static void EndScene();
         static void Flush();
 
