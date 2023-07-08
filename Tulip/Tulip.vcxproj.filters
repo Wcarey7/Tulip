@@ -31,6 +31,9 @@
     <Filter Include="src\Tulip\Renderer">
       <UniqueIdentifier>{70D9A8B6-5CBD-690C-C51D-645FB120548E}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Tulip\Scene">
+      <UniqueIdentifier>{27C736CB-9352-A48F-9C63-2784086E0090}</UniqueIdentifier>
+    </Filter>
     <Filter Include="vendor">
       <UniqueIdentifier>{B3738122-9F15-ACF8-88D0-BF4C74113349}</UniqueIdentifier>
     </Filter>
@@ -170,6 +173,12 @@
     </ClInclude>
     <ClInclude Include="src\Tulip\Renderer\VertexArray.h">
       <Filter>src\Tulip\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Tulip\Scene\Components.h">
+      <Filter>src\Tulip\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Tulip\Scene\Scene.h">
+      <Filter>src\Tulip\Scene</Filter>
     </ClInclude>
     <ClInclude Include="src\tulippch.h">
       <Filter>src</Filter>
@@ -1425,6 +1434,7 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
+    <ClInclude Include="src\Tulip\Scene\Entity.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
@@ -1511,11 +1521,15 @@
     <ClCompile Include="src\Tulip\Renderer\VertexArray.cpp">
       <Filter>src\Tulip\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Tulip\Scene\Scene.cpp">
+      <Filter>src\Tulip\Scene</Filter>
+    </ClCompile>
     <ClCompile Include="src\tulippch.cpp">
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
+    <ClCompile Include="src\Tulip\Scene\Entity.cpp" />
   </ItemGroup>
 </Project>

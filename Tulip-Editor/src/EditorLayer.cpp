@@ -20,17 +20,24 @@ namespace Tulip
         fbSpec.Width = 1280;
         fbSpec.Height = 720;
         m_Framebuffer = Framebuffer::Create(fbSpec);
+
+        m_ActiveScene = CreateRef<Scene>();
+
+        auto square = m_ActiveScene->CreateEntity("Green Square");
+        square.AddComponent<SpriteRendererComponent>(glm::vec4{0.0f, 1.0f, 0.0f, 1.0f});
+
+        m_SquareEntity = square;
     }
 
     void EditorLayer::OnDetach()
     {
     }
 
-    void EditorLayer::OnUpdate(Tulip::Timestep ts)
+    void EditorLayer::OnUpdate(Timestep ts)
     {
 
         // Resize
-        if (Tulip::FramebufferSpecification spec = m_Framebuffer->GetSpecification();
+        if (FramebufferSpecification spec = m_Framebuffer->GetSpecification();
             m_ViewportSize.x > 0.0f && m_ViewportSize.y > 0.0f && // zero sized framebuffer is invalid
             (spec.Width != m_ViewportSize.x || spec.Height != m_ViewportSize.y))
         {
@@ -42,20 +49,23 @@ namespace Tulip
         if(m_ViewportFocused)
             m_CameraController.OnUpdate(ts);
 
-        Tulip::Renderer2D::ResetStats();
+        Renderer2D::ResetStats();
 
         m_Framebuffer->Bind();
 
-        Tulip::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
-        Tulip::RenderCommand::Clear();
+        RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
+        RenderCommand::Clear();
 
-        Tulip::Renderer2D::BeginScene(m_CameraController.GetCamera());
-        Tulip::Renderer2D::DrawRotatedQuad({ 1.0f, 0.0f }, { 0.8f, 0.8f }, -45.0f, { 0.8f, 0.2f, 0.3f, 1.0f });
-        Tulip::Renderer2D::DrawQuad({ -1.0f, 0.0f }, { 0.8f, 0.8f }, { 0.8f, 0.2f, 0.3f, 1.0f });
-        Tulip::Renderer2D::DrawQuad({ 0.5f, -0.5f }, { 0.5f, 0.75f }, m_SquareColor);
-        Tulip::Renderer2D::DrawQuad({ 0.0f, 0.0f, -0.1f }, { 10.0f, 10.0f }, m_CheckerboardTexture, 10.0f);
-        //Tulip::Renderer2D::DrawQuad({ -0.5f, -0.5f, 0.0f }, { 1.0f, 1.0f }, m_CheckerboardTexture, 20.0f);
-        Tulip::Renderer2D::EndScene();
+        Renderer2D::BeginScene(m_CameraController.GetCamera());
+
+        m_ActiveScene->OnUpdate(ts);
+
+        //Renderer2D::DrawRotatedQuad({ 1.0f, 0.0f }, { 0.8f, 0.8f }, -45.0f, { 0.8f, 0.2f, 0.3f, 1.0f });
+        //Renderer2D::DrawQuad({ -1.0f, 0.0f }, { 0.8f, 0.8f }, { 0.8f, 0.2f, 0.3f, 1.0f });
+        //Renderer2D::DrawQuad({ 0.5f, -0.5f }, { 0.5f, 0.75f }, m_SquareColor);
+        //Renderer2D::DrawQuad({ 0.0f, 0.0f, -0.1f }, { 10.0f, 10.0f }, m_CheckerboardTexture, 10.0f);
+        //Renderer2D::DrawQuad({ -0.5f, -0.5f, 0.0f }, { 1.0f, 1.0f }, m_CheckerboardTexture, 20.0f);
+        Renderer2D::EndScene();
 
         m_Framebuffer->UnBind();
     }
@@ -114,7 +124,7 @@ namespace Tulip
                 // which we can't undo at the moment without finer window depth/z control.
                 //ImGui::MenuItem("Fullscreen", NULL, &opt_fullscreen_persistant);
 
-                if (ImGui::MenuItem("Exit")) Tulip::Application::Get().Close();
+                if (ImGui::MenuItem("Exit")) Application::Get().Close();
                 ImGui::EndMenu();
             }
 
@@ -123,19 +133,29 @@ namespace Tulip
 
         ImGui::Begin("Settings");
 
-        auto stats = Tulip::Renderer2D::GetStats();
+        auto stats = Renderer2D::GetStats();
         ImGui::Text("Renderer2D Stats:");
         ImGui::Text("Draw Calls: %d", stats.DrawCalls);
         ImGui::Text("Quads: %d", stats.QuadCount);
         ImGui::Text("Vertices: %d", stats.GetTotalVertexCount());
         ImGui::Text("Indices: %d", stats.GetTotalIndexCount());
 
-        ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
+
+        if (m_SquareEntity)
+        {
+            ImGui::Separator();
+            auto& tag = m_SquareEntity.GetComponent<TagComponent>().Tag;
+            ImGui::Text("%s", tag.c_str());
+
+            auto& squareColor = m_SquareEntity.GetComponent<SpriteRendererComponent>().Color;
+            ImGui::ColorEdit4("Square Color", glm::value_ptr(squareColor));
+            ImGui::Separator();
+        }
+
 
         ImGui::End();
 
         ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0, 0 });
-
         ImGui::Begin("Viewport");
 
         m_ViewportFocused = ImGui::IsWindowFocused();
@@ -156,7 +176,7 @@ namespace Tulip
 
     }
 
-    void EditorLayer::OnEvent(Tulip::Event& e)
+    void EditorLayer::OnEvent(Event& e)
     {
         m_CameraController.OnEvent(e);
     }

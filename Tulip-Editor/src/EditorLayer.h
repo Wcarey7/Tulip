@@ -24,6 +24,10 @@ namespace Tulip
         Ref<VertexArray> m_SquareVA;
         Ref<Shader> m_FlatColorShader;
         Ref<Framebuffer> m_Framebuffer;
+
+        Ref<Scene> m_ActiveScene;
+        Entity m_SquareEntity;
+
         Ref<Texture2D> m_CheckerboardTexture;
 
         bool m_ViewportFocused = false;

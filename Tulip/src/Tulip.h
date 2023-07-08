@@ -15,6 +15,10 @@
 
 #include "Tulip/ImGui/ImGuiLayer.h"
 
+#include "Tulip/Scene/Scene.h"
+#include "Tulip/Scene/Entity.h"
+#include "Tulip/Scene/Components.h"
+
 // ---Renderer-------------
 #include "Tulip/Renderer/Renderer.h"
 #include "Tulip/Renderer/Renderer2D.h"

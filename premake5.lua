@@ -19,6 +19,8 @@ IncludeDir["Glad"] = "Tulip/vendor/Glad/include"
 IncludeDir["ImGui"] = "Tulip/vendor/imgui"
 IncludeDir["glm"] = "Tulip/vendor/glm"
 IncludeDir["stb_image"] = "Tulip/vendor/stb_image"
+IncludeDir["entt"] = "Tulip/vendor/entt/include"
+
 
 group "dependencies"
     include "Tulip/vendor/GLFW"
@@ -63,7 +65,8 @@ project "Tulip"
         "%{IncludeDir.Glad}",
         "%{IncludeDir.ImGui}",
         "%{IncludeDir.glm}",
-        "%{IncludeDir.stb_image}"
+        "%{IncludeDir.stb_image}",
+        "%{IncludeDir.entt}"
     }
 
     links
@@ -182,7 +185,8 @@ project "Tulip-Editor"
         "Tulip/vendor/spdlog/include",
         "Tulip/src",
         "Tulip/vendor",
-        "%{IncludeDir.glm}"
+        "%{IncludeDir.glm}",
+        "%{IncludeDir.entt}"
     }
 
     links
