@@ -3,6 +3,8 @@ bin/
 bin-int/
 
 # Files
+imgui.ini
+*.ini
 *.log
 *.user
 *.hint
