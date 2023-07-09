@@ -45,7 +45,8 @@ namespace Tulip
         static Statistics GetStats();
 
     private:
-        static void FlushandReset();
+        static void StartBatch();
+        static void NextBatch();
     
     };
 }
