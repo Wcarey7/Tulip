@@ -32,25 +32,25 @@ namespace Tulip
         m_CameraEntity = m_ActiveScene->CreateEntity("Camera Entity");
         m_CameraEntity.AddComponent<CameraComponent>();
 
-        m_SecondCamera = m_ActiveScene->CreateEntity("Clip-Space Entity");
+        m_SecondCamera = m_ActiveScene->CreateEntity("Second Camera Entity");
         auto& cc = m_SecondCamera.AddComponent<CameraComponent>();
         cc.Primary = false;
 
         class CameraController : public ScriptableEntity
         {
         public:
-            void OnCreate()
+            virtual void OnCreate() override
             {
                 auto& transform = GetComponent<TransformComponent>().Transform;
                 transform[3][0] = rand() % 10 - 5.0f;
             }
 
-            void OnDestroy()
+            virtual void OnDestroy() override
             {
 
             }
 
-            void OnUpdate(Timestep ts)
+            virtual void OnUpdate(Timestep ts) override
             {
                 auto& transform = GetComponent<TransformComponent>().Transform;
                 float speed = 5.0f;
