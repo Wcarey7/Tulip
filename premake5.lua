@@ -20,12 +20,14 @@ IncludeDir["ImGui"] = "Tulip/vendor/imgui"
 IncludeDir["glm"] = "Tulip/vendor/glm"
 IncludeDir["stb_image"] = "Tulip/vendor/stb_image"
 IncludeDir["entt"] = "Tulip/vendor/entt/include"
+IncludeDir["yaml_cpp"] = "Tulip/vendor/yaml-cpp/include"
 
 
 group "dependencies"
     include "Tulip/vendor/GLFW"
     include "Tulip/vendor/Glad"
     include "Tulip/vendor/imgui"
+    include "Tulip/vendor/yaml-cpp"
 group ""
 
 project "Tulip"
@@ -66,7 +68,8 @@ project "Tulip"
         "%{IncludeDir.ImGui}",
         "%{IncludeDir.glm}",
         "%{IncludeDir.stb_image}",
-        "%{IncludeDir.entt}"
+        "%{IncludeDir.entt}",
+        "%{IncludeDir.yaml_cpp}"
     }
 
     links
@@ -74,6 +77,7 @@ project "Tulip"
         "GLFW",
         "Glad",
         "ImGui",
+        "yaml-cpp",
         "opengl32.lib"
     }
 
