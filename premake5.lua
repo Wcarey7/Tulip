@@ -21,6 +21,7 @@ IncludeDir["glm"] = "Tulip/vendor/glm"
 IncludeDir["stb_image"] = "Tulip/vendor/stb_image"
 IncludeDir["entt"] = "Tulip/vendor/entt/include"
 IncludeDir["yaml_cpp"] = "Tulip/vendor/yaml-cpp/include"
+IncludeDir["ImGuizmo"] = "Tulip/vendor/ImGuizmo"
 
 
 group "dependencies"
@@ -51,7 +52,9 @@ project "Tulip"
         "%{prj.name}/vendor/stb_image/**.h",
         "%{prj.name}/vendor/stb_image/**.cpp",
         "%{prj.name}/vendor/glm/glm/**.hpp",
-        "%{prj.name}/vendor/glm/glm/**.inl"
+        "%{prj.name}/vendor/glm/glm/**.inl",
+        "%{prj.name}/vendor/ImGuizmo/ImGuizmo.h",
+        "%{prj.name}/vendor/ImGuizmo/ImGuizmo.cpp"
     }
 
     defines
@@ -69,7 +72,8 @@ project "Tulip"
         "%{IncludeDir.glm}",
         "%{IncludeDir.stb_image}",
         "%{IncludeDir.entt}",
-        "%{IncludeDir.yaml_cpp}"
+        "%{IncludeDir.yaml_cpp}",
+        "%{IncludeDir.ImGuizmo}"
     }
 
     links
@@ -80,6 +84,9 @@ project "Tulip"
         "yaml-cpp",
         "opengl32.lib"
     }
+
+     --filter "files:vendor/ImGuizmo/**.cpp"
+     --flags { "NoPCH" }
 
     filter "system:windows"
         systemversion "latest"
@@ -181,7 +188,7 @@ project "Tulip-Editor"
     files
     {
         "%{prj.name}/src/**.h",
-        "%{prj.name}/src/**.cpp"
+        "%{prj.name}/src/**.cpp",
     }
 
     includedirs
@@ -190,7 +197,8 @@ project "Tulip-Editor"
         "Tulip/src",
         "Tulip/vendor",
         "%{IncludeDir.glm}",
-        "%{IncludeDir.entt}"
+        "%{IncludeDir.entt}",
+        "%{IncludeDir.ImGuizmo}"
     }
 
     links

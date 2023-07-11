@@ -5,7 +5,7 @@ Entities:
       Tag: Top
     TransformComponent:
       Translation: [0, 0.5, 0]
-      Rotation: [1.57079637, 0.785398185, 0]
+      Rotation: [1.56556022, 0.783652842, 0]
       Scale: [1, 1, 1]
     SpriteRendererComponent:
       Color: [0.876447856, 0, 0.834712803, 1]
@@ -13,13 +13,13 @@ Entities:
     TagComponent:
       Tag: Camera
     TransformComponent:
-      Translation: [0, 1.70000005, 4]
+      Translation: [0.300000012, 1.70000005, 3.9000001]
       Rotation: [-0.404916406, 0, 0]
       Scale: [1, 1, 1]
     CameraComponent:
       Camera:
         ProjectionType: 0
-        PerspectiveFOV: 0.52359879
+        PerspectiveFOV: 0.785398185
         PerspectiveNear: 0.00999999978
         PerspectiveFar: 1000
         OrthographicSize: 10
