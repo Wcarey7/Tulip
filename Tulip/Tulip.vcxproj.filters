@@ -156,6 +156,9 @@
     <ClInclude Include="src\Tulip\Renderer\Camera.h">
       <Filter>src\Tulip\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Tulip\Renderer\EditorCamera.h">
+      <Filter>src\Tulip\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Tulip\Renderer\Framebuffer.h">
       <Filter>src\Tulip\Renderer</Filter>
     </ClInclude>
@@ -1524,6 +1527,9 @@
       <Filter>src\Tulip\Math</Filter>
     </ClCompile>
     <ClCompile Include="src\Tulip\Renderer\Buffer.cpp">
+      <Filter>src\Tulip\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Tulip\Renderer\EditorCamera.cpp">
       <Filter>src\Tulip\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Tulip\Renderer\Framebuffer.cpp">

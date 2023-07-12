@@ -172,6 +172,7 @@
     <ClInclude Include="src\Tulip\Math\Math.h" />
     <ClInclude Include="src\Tulip\Renderer\Buffer.h" />
     <ClInclude Include="src\Tulip\Renderer\Camera.h" />
+    <ClInclude Include="src\Tulip\Renderer\EditorCamera.h" />
     <ClInclude Include="src\Tulip\Renderer\Framebuffer.h" />
     <ClInclude Include="src\Tulip\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\Tulip\Renderer\OrthographicCamera.h" />
@@ -630,6 +631,7 @@
     <ClCompile Include="src\Tulip\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\Tulip\Math\Math.cpp" />
     <ClCompile Include="src\Tulip\Renderer\Buffer.cpp" />
+    <ClCompile Include="src\Tulip\Renderer\EditorCamera.cpp" />
     <ClCompile Include="src\Tulip\Renderer\Framebuffer.cpp" />
     <ClCompile Include="src\Tulip\Renderer\GraphicsContext.cpp" />
     <ClCompile Include="src\Tulip\Renderer\OrthographicCamera.cpp" />

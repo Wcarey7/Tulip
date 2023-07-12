@@ -2,6 +2,7 @@
 
 #include "Tulip.h"
 #include "Panels/SceneHierarchyPanel.h"
+#include "Tulip/Renderer/EditorCamera.h"
 
 
 namespace Tulip
@@ -40,6 +41,8 @@ namespace Tulip
         Entity m_SecondCamera;
 
         bool m_PrimaryCamera = true;
+
+        EditorCamera m_EditorCamera;
 
         Ref<Texture2D> m_CheckerboardTexture;
 

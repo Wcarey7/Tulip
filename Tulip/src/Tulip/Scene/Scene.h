@@ -1,6 +1,8 @@
 #pragma once
 
 #include "Tulip/Core/Timestep.h"
+#include "Tulip/Renderer/EditorCamera.h"
+
 #include <entt.hpp>
 
 
@@ -17,7 +19,8 @@ namespace Tulip
         Entity CreateEntity(const std::string& name = std::string());
         void DestroyEntity(Entity entity);
 
-        void OnUpdate(Timestep ts);
+        void OnUpdateRuntime(Timestep ts);
+        void OnUpdateEditor(Timestep ts, EditorCamera& camera);
         void OnViewportResize(uint32_t width, uint32_t height);
 
         Entity GetPrimaryCameraEntity();
