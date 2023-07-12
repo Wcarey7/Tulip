@@ -16,11 +16,11 @@ namespace Tulip
         case Tulip::ShaderDataType::Float4:    return GL_FLOAT;
         case Tulip::ShaderDataType::Mat3:      return GL_FLOAT;
         case Tulip::ShaderDataType::Mat4:      return GL_FLOAT;
-        case Tulip::ShaderDataType::Int:       return GL_FLOAT;
-        case Tulip::ShaderDataType::Int2:      return GL_FLOAT;
-        case Tulip::ShaderDataType::Int3:      return GL_FLOAT;
-        case Tulip::ShaderDataType::Int4:      return GL_FLOAT;
-        case Tulip::ShaderDataType::Bool:      return GL_FLOAT;
+        case Tulip::ShaderDataType::Int:       return GL_INT;
+        case Tulip::ShaderDataType::Int2:      return GL_INT;
+        case Tulip::ShaderDataType::Int3:      return GL_INT;
+        case Tulip::ShaderDataType::Int4:      return GL_INT;
+        case Tulip::ShaderDataType::Bool:      return GL_BOOL;
         }
 
         TULIP_CORE_ASSERT(false, "Unknown ShadeDataType.");

@@ -11,7 +11,7 @@
 
 namespace Tulip
 {
-    std::string FileDialogs::OpenFile(const char* filter)
+    std::optional<std::string> FileDialogs::OpenFile(const char* filter)
     {
         OPENFILENAMEA ofn;
         CHAR szFile[260] = { 0 };
@@ -27,10 +27,10 @@ namespace Tulip
         {
             return ofn.lpstrFile;
         }
-        return std::string();
+        return std::nullopt;
     }
 
-    std::string FileDialogs::SaveFile(const char* filter)
+    std::optional<std::string> FileDialogs::SaveFile(const char* filter)
     {
         OPENFILENAMEA ofn;
         CHAR szFile[260] = { 0 };
@@ -46,6 +46,6 @@ namespace Tulip
         {
             return ofn.lpstrFile;
         }
-        return std::string();
+        return std::nullopt;
     }
 }

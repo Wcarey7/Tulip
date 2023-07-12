@@ -135,7 +135,7 @@ namespace Tulip
         if (mouseX >= 0 && mouseY >= 0 && mouseX < (int)viewportSize.x && mouseY < (int)viewportSize.y)
         {
             int pixelData = m_Framebuffer->ReadPixel(1, mouseX, mouseY);
-            TULIP_CORE_WARN("Pixel data = {0}", pixelData);
+            m_HoveredEntity = pixelData == -1 ? Entity() : Entity((entt::entity)pixelData, m_ActiveScene.get());
         }
 
         m_Framebuffer->UnBind();
@@ -219,6 +219,11 @@ namespace Tulip
         m_SceneHierarchyPanel.OnImGuiRender();
 
         ImGui::Begin("Stats");
+
+        std::string name = "None";
+        if (m_HoveredEntity)
+            name = m_HoveredEntity.GetComponent<TagComponent>().Tag;
+        ImGui::Text("Hovered Entity: %s", name.c_str());
 
         auto stats = Renderer2D::GetStats();
         ImGui::Text("Renderer2D Stats:");
@@ -312,6 +317,7 @@ namespace Tulip
 
         EventDispatcher dispatcher(e);
         dispatcher.Dispatch<KeyPressedEvent>(TULIP_BIND_EVENT_FN(EditorLayer::OnKeyPressed));
+        dispatcher.Dispatch<MouseButtonPressedEvent>(TULIP_BIND_EVENT_FN(EditorLayer::OnMouseButtonPressed));
     }
 
     bool EditorLayer::OnKeyPressed(KeyPressedEvent& e)
@@ -374,6 +380,16 @@ namespace Tulip
         }
     }
 
+    bool EditorLayer::OnMouseButtonPressed(MouseButtonPressedEvent& e)
+    {
+        if (e.GetMouseButton() == Mouse::ButtonLeft)
+        {
+            if (m_ViewportHovered && !ImGuizmo::IsOver() && !Input::IsKeyPressed(Key::LeftAlt))
+                m_SceneHierarchyPanel.SetSelectedEntity(m_HoveredEntity);
+        }
+        return false;
+    }
+
     void EditorLayer::NewScene()
     {
         m_ActiveScene = CreateRef<Scene>();
@@ -383,25 +399,25 @@ namespace Tulip
 
     void EditorLayer::OpenScene()
     {
-        std::string filepath = FileDialogs::OpenFile("Tulip Scene (*.tulip)\0*.tulip\0");
-        if (!filepath.empty())
+        std::optional<std::string> filepath = FileDialogs::OpenFile("Tulip Scene (*.tulip)\0*.tulip\0");
+        if (filepath)
         {
             m_ActiveScene = CreateRef<Scene>();
             m_ActiveScene->OnViewportResize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
             m_SceneHierarchyPanel.SetContext(m_ActiveScene);
 
             SceneSerializer serializer(m_ActiveScene);
-            serializer.Deserialize(filepath);
+            serializer.Deserialize(*filepath);
         }
     }
 
     void EditorLayer::SaveSceneAs()
     {
-        std::string filepath = FileDialogs::SaveFile("Tulip Scene (*.tulip)\0*.tulip\0");
-        if (!filepath.empty())
+        std::optional<std::string> filepath = FileDialogs::SaveFile("Tulip Scene (*.tulip)\0*.tulip\0");
+        if (filepath)
         {
             SceneSerializer serializer(m_ActiveScene);
-            serializer.Serialize(filepath);
+            serializer.Serialize(*filepath);
         }
     }
 }
