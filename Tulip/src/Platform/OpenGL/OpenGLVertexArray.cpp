@@ -16,11 +16,11 @@ namespace Tulip
         case Tulip::ShaderDataType::Float4:    return GL_FLOAT;
         case Tulip::ShaderDataType::Mat3:      return GL_FLOAT;
         case Tulip::ShaderDataType::Mat4:      return GL_FLOAT;
-        case Tulip::ShaderDataType::Int:       return GL_FLOAT;
-        case Tulip::ShaderDataType::Int2:      return GL_FLOAT;
-        case Tulip::ShaderDataType::Int3:      return GL_FLOAT;
-        case Tulip::ShaderDataType::Int4:      return GL_FLOAT;
-        case Tulip::ShaderDataType::Bool:      return GL_FLOAT;
+        case Tulip::ShaderDataType::Int:       return GL_INT;
+        case Tulip::ShaderDataType::Int2:      return GL_INT;
+        case Tulip::ShaderDataType::Int3:      return GL_INT;
+        case Tulip::ShaderDataType::Int4:      return GL_INT;
+        case Tulip::ShaderDataType::Bool:      return GL_BOOL;
         }
 
         TULIP_CORE_ASSERT(false, "Unknown ShadeDataType.");
@@ -63,6 +63,17 @@ namespace Tulip
                 case ShaderDataType::Float2:
                 case ShaderDataType::Float3:
                 case ShaderDataType::Float4:
+                {
+                    glEnableVertexAttribArray(m_VertexBufferIndex);
+                    glVertexAttribPointer(m_VertexBufferIndex,
+                        element.GetComponentCount(),
+                        ShaderDataTypeToOpenGLBaseType(element.Type),
+                        element.Normalized ? GL_TRUE : GL_FALSE,
+                        layout.GetStride(),
+                        (const void*)element.Offset);
+                    m_VertexBufferIndex++;
+                    break;
+                }
                 case ShaderDataType::Int:
                 case ShaderDataType::Int2:
                 case ShaderDataType::Int3:
@@ -70,10 +81,9 @@ namespace Tulip
                 case ShaderDataType::Bool:
                 {
                     glEnableVertexAttribArray(m_VertexBufferIndex);
-                    glVertexAttribPointer(m_VertexBufferIndex,
+                    glVertexAttribIPointer(m_VertexBufferIndex,
                         element.GetComponentCount(),
                         ShaderDataTypeToOpenGLBaseType(element.Type),
-                        element.Normalized ? GL_TRUE : GL_FALSE,
                         layout.GetStride(),
                         (const void*)element.Offset);
                     m_VertexBufferIndex++;
