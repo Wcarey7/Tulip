@@ -8,6 +8,8 @@
 
 namespace Tulip
 {
+    extern const std::filesystem::path g_AssetPath;
+
     SceneHierarchyPanel::SceneHierarchyPanel(const Ref<Scene>& context)
     {
         SetContext(context);

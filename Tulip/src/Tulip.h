@@ -6,6 +6,7 @@
 #include "Tulip/Core/Application.h"
 #include "Tulip/Core/Layer.h"
 #include "Tulip/Core/Log.h"
+//#include "Tulip/Core/Assert.h"
 
 #include "Tulip/Core/Timestep.h"
 #include "Tulip/Core/Input.h"
