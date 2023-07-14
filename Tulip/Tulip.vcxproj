@@ -162,6 +162,7 @@
     <ClInclude Include="src\Tulip\Core\LayerStack.h" />
     <ClInclude Include="src\Tulip\Core\Log.h" />
     <ClInclude Include="src\Tulip\Core\MouseButtonCodes.h" />
+    <ClInclude Include="src\Tulip\Core\PlatformDetection.h" />
     <ClInclude Include="src\Tulip\Core\Timestep.h" />
     <ClInclude Include="src\Tulip\Core\Window.h" />
     <ClInclude Include="src\Tulip\Debug\Instrumentor.h" />

@@ -5,7 +5,7 @@
 
 namespace Tulip 
 {
-    class TULIP_API WindowResizeEvent : public Event
+    class WindowResizeEvent : public Event
     {
     public:
         WindowResizeEvent(uint32_t width, uint32_t height)

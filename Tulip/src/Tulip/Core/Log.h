@@ -11,7 +11,7 @@
 
 namespace Tulip 
 {
-    class TULIP_API Log
+    class Log
     {
     public:
         static void Init();

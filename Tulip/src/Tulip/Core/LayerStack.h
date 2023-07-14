@@ -6,7 +6,7 @@
 
 namespace Tulip 
 {
-    class TULIP_API LayerStack
+    class LayerStack
     {
     public:
         LayerStack() = default;

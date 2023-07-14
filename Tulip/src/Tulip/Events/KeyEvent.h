@@ -7,7 +7,7 @@
 
 namespace Tulip 
 {
-    class TULIP_API KeyEvent : public Event
+    class KeyEvent : public Event
     {
     public:
         inline KeyCode GetKeyCode() const { return m_KeyCode; }
@@ -21,7 +21,7 @@ namespace Tulip
         KeyCode m_KeyCode;
     };
 
-    class TULIP_API KeyPressedEvent : public KeyEvent
+    class KeyPressedEvent : public KeyEvent
     {
     public:
         KeyPressedEvent(KeyCode keycode, int repeatCount)
@@ -42,7 +42,7 @@ namespace Tulip
 
     };
 
-    class TULIP_API KeyReleasedEvent : public KeyEvent
+    class KeyReleasedEvent : public KeyEvent
     {
     public:
         KeyReleasedEvent(KeyCode keycode)
@@ -57,7 +57,7 @@ namespace Tulip
         EVENT_CLASS_TYPE(KeyReleased)
     };
 
-    class TULIP_API KeyTypedEvent : public KeyEvent
+    class KeyTypedEvent : public KeyEvent
     {
     public:
         KeyTypedEvent(KeyCode keycode)

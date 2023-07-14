@@ -1,20 +1,22 @@
 #pragma once
 
 #include <memory>
+#include "Tulip/Core/PlatformDetection.h"
 
 
-#ifdef TULIP_PLATFORM_WINDOWS
-#if TULIP_DYNAMIC_LINK
-    #ifdef TULIP_BUILD_DLL
-        #define TULIP_API __declspec(dllexport)
+
+#ifdef TULIP_DEBUG
+    #if defined(TULIP_PLATFORM_WINDOWS)
+        #define TULIP_DEBUGBREAK() __debugbreak()
+    #elif defined(TULIP_PLATFORM_LINUX)
+        #include <signal.h>
+        #define TULIP_DEBUGBREAK() raise(SIGTRAP)
     #else
-        #define TULIP_API __declspec(dllimport)
+        #error "Platform doesn't support debugbreak yet!"
     #endif
+    #define TULIP_ENABLE_ASSERTS
 #else
-#define TULIP_API
-#endif
-#else
-    #error Tulip only supports Windows.
+    #define TULIP_DEBUGBREAK()
 #endif
 
 
