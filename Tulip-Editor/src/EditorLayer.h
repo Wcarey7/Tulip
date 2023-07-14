@@ -2,6 +2,7 @@
 
 #include "Tulip.h"
 #include "Panels/SceneHierarchyPanel.h"
+#include "Panels/ContentBrowserPanel.h"
 #include "Tulip/Renderer/EditorCamera.h"
 
 
@@ -60,5 +61,6 @@ namespace Tulip
 
         // Panels
         SceneHierarchyPanel m_SceneHierarchyPanel;
+        ContentBrowserPanel m_ContentBrowserPanel;
     };
 }
