@@ -2,6 +2,7 @@
 
 #include "Tulip/Scene/SceneCamera.h"
 #include "Tulip/Scene/ScriptableEntity.h"
+#include "Tulip/Renderer/Texture.h"
 
 #define GLM_ENABLE_EXPERIMENTAL
 #include <glm/gtx/quaternion.hpp>
@@ -47,6 +48,8 @@ namespace Tulip
     struct SpriteRendererComponent
     {
         glm::vec4 Color{ 1.0f, 1.0f, 1.0f, 1.0f };
+        Ref<Texture2D> Texture;
+        float TilingFactor = 1.0f;
 
         SpriteRendererComponent() = default;
         SpriteRendererComponent(const SpriteRendererComponent&) = default;

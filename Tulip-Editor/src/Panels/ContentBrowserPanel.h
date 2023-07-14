@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Tulip/Renderer/Texture.h"
 #include <filesystem>
+#include "Tulip/Renderer/Texture.h"
 
 
 namespace Tulip
