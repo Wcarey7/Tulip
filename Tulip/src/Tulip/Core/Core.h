@@ -20,17 +20,8 @@
 #endif
 
 
-#ifdef TULIP_DEBUG
-    #define  TULIP_ENABLE_ASSERTS
-#endif
-
-#ifdef TULIP_ENABLE_ASSERTS
-    #define TULIP_ASSERT(x, ...) {if(!(x)) { TULIP_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
-    #define TULIP_CORE_ASSERT(x, ...) {if(!(x)) { TULIP_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
-#else
-    #define TULIP_ASSERT(x, ...)
-    #define TULIP_CORE_ASSERT(x, ...)
-#endif
+#define TULIP_EXPAND_MACRO(x) x
+#define TULIP_STRINGIFY_MACRO(x) #x
 
 #define BIT(x) (1 << x)
 
@@ -56,3 +47,6 @@ namespace Tulip
         return std::make_shared<T>(std::forward<Args>(args)...);
     }
 }
+
+#include "Tulip/Core/Log.h"
+#include "Tulip/Core/Assert.h"

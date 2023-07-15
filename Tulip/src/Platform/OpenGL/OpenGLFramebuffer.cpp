@@ -176,7 +176,7 @@ namespace Tulip
             glDrawBuffer(GL_NONE);
         }
 
-        TULIP_CORE_ASSERT("", glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE, "Framebuffer is incomplete!");
+        TULIP_CORE_ASSERT(glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE, "Framebuffer is incomplete!");
 
 
         glBindFramebuffer(GL_FRAMEBUFFER, 0);

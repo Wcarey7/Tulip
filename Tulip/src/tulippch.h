@@ -1,5 +1,14 @@
 #pragma once
 
+#include "Tulip/Core/PlatformDetection.h"
+
+#ifdef TULIP_PLATFORM_WINDOWS
+    #ifndef NOMINMAX
+        // See github.com/skypjack/entt/wiki/Frequently-Asked-Questions#warning-c4003-the-min-the-max-and-the-macro
+        #define NOMINMAX
+    #endif
+#endif
+
 #include <iostream>
 #include <memory>
 #include <utility>
@@ -13,6 +22,7 @@
 #include <unordered_map>
 #include <unordered_set>
 
+#include "Tulip/Core/Core.h"
 #include "Tulip/Core/Log.h"
 #include "Tulip/Debug/Instrumentor.h"
 
