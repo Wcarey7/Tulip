@@ -13,10 +13,22 @@ int main(int argc, char** argv);
 
 namespace Tulip 
 {
+    struct ApplicationCommandLineArgs
+    {
+        int Count = 0;
+        char** Args = nullptr;
+
+        const char* operator[](int index) const
+        {
+            TULIP_CORE_ASSERT(index < Count);
+            return Args[index];
+        }
+    };
+
     class Application
     {
     public:
-        Application(const std::string& name = "Tulip App");
+        Application(const std::string& name = "Tulip App", ApplicationCommandLineArgs args = ApplicationCommandLineArgs());
         virtual ~Application();
 
         void Run();
@@ -34,10 +46,14 @@ namespace Tulip
 
         inline static Application& Get() { return *s_Instance; }
 
+        ApplicationCommandLineArgs GetCommandLineArgs() const { return m_CommandLineArgs; }
+
     private:
         bool OnWindowClose(WindowCloseEvent& e);
         bool OnWindowResize(WindowResizeEvent& e);
+
     private:
+        ApplicationCommandLineArgs m_CommandLineArgs;
         Scope<Window> m_Window;
         ImGuiLayer* m_ImGuiLayer;
 
@@ -52,7 +68,7 @@ namespace Tulip
         friend int ::main(int argc, char** argv);
     };
 
-    Application* CreateApplication();
+    Application* CreateApplication(ApplicationCommandLineArgs args);
 }
 
 

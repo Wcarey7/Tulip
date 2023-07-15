@@ -31,6 +31,14 @@ namespace Tulip
 
         m_ActiveScene = CreateRef<Scene>();
 
+        auto commandLineArgs = Application::Get().GetCommandLineArgs();
+        if (commandLineArgs.Count > 1)
+        {
+            auto sceneFilePath = commandLineArgs[1];
+            SceneSerializer serializer(m_ActiveScene);
+            serializer.Deserialize(sceneFilePath);
+        }
+
         // 1.778f == 16:9 aspect ratio
         m_EditorCamera = EditorCamera(30.0f, 1.778f, 0.1f, 1000.0f);
 
@@ -368,12 +376,20 @@ namespace Tulip
 
     void EditorLayer::OpenScene(const std::filesystem::path& path)
     {
-        m_ActiveScene = CreateRef<Scene>();
-        m_ActiveScene->OnViewportResize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
-        m_SceneHierarchyPanel.SetContext(m_ActiveScene);
+        if (path.extension().string() != ".tulip")
+        {
+            TULIP_WARN("Could not load {0} - not a scene file", path.filename().string());
+            return;
+        }
 
-        SceneSerializer serializer(m_ActiveScene);
-        serializer.Deserialize(path.string());
+        Ref<Scene> newScene = CreateRef<Scene>();
+        SceneSerializer serializer(newScene);
+        if (serializer.Deserialize(path.string()))
+        {
+            m_ActiveScene = newScene;
+            m_ActiveScene->OnViewportResize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
+            m_SceneHierarchyPanel.SetContext(m_ActiveScene);
+        }
     }
 
     void EditorLayer::SaveSceneAs()
