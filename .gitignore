@@ -3,8 +3,6 @@ bin/
 bin-int/
 
 # Files
-imgui.ini
-*.ini
 *.log
 *.user
 *.hint
@@ -19,3 +17,8 @@ TulipProfile-Startup.json
 **.vcxproj.filters
 **.vcxproj.user
 **.csproj
+
+# Directories
+Tulip/vendor/VulkanSDK
+Tulip-Editor/assets/cache
+scripts/__pycache__

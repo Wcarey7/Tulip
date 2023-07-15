@@ -1,5 +1,8 @@
 #pragma once
+
 #include "Tulip/Core/Core.h"
+#include "Tulip/Core/Application.h"
+
 
 #ifdef TULIP_PLATFORM_WINDOWS
 

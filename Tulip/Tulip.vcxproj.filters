@@ -99,6 +99,9 @@
     <ClInclude Include="src\Tulip\Core\Application.h">
       <Filter>src\Tulip\Core</Filter>
     </ClInclude>
+    <ClInclude Include="src\Tulip\Core\Assert.h">
+      <Filter>src\Tulip\Core</Filter>
+    </ClInclude>
     <ClInclude Include="src\Tulip\Core\Core.h">
       <Filter>src\Tulip\Core</Filter>
     </ClInclude>
@@ -121,6 +124,9 @@
       <Filter>src\Tulip\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Tulip\Core\MouseButtonCodes.h">
+      <Filter>src\Tulip\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Tulip\Core\PlatformDetection.h">
       <Filter>src\Tulip\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Tulip\Core\Timestep.h">
@@ -1470,8 +1476,6 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\Tulip\Core\Assert.h" />
-    <ClInclude Include="src\Tulip\Core\PlatformDetection.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
