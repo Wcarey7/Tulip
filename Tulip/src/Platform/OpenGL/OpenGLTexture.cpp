@@ -12,7 +12,9 @@ namespace Tulip
     {
         int width, height, channels;
         stbi_set_flip_vertically_on_load(1);
-        stbi_uc* data = stbi_load(path.c_str(), &width, &height, &channels, 0);
+        stbi_uc* data = nullptr;
+
+        data = stbi_load(path.c_str(), &width, &height, &channels, 0);
         TULIP_CORE_ASSERT(data, "Failed to load image.");
         m_Width = width;
         m_Height = height;
