@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Tulip/Scene/SceneCamera.h"
-#include "Tulip/Scene/ScriptableEntity.h"
+#include "Tulip/Core/UUID.h"
 #include "Tulip/Renderer/Texture.h"
 
 #define GLM_ENABLE_EXPERIMENTAL
@@ -13,6 +13,14 @@
 
 namespace Tulip
 {
+    struct IDComponent
+    {
+        UUID ID;
+
+        IDComponent() = default;
+        IDComponent(const IDComponent&) = default;
+    };
+
     struct TagComponent
     {
         std::string Tag;
@@ -66,6 +74,9 @@ namespace Tulip
         CameraComponent() = default;
         CameraComponent(const CameraComponent&) = default;
     };
+
+    // Forward declaration
+    class ScriptableEntity;
 
     struct NativeScriptComponent
     {

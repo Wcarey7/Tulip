@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Tulip/Core/UUID.h"
 #include "Tulip/Core/Timestep.h"
 #include "Tulip/Renderer/EditorCamera.h"
 
@@ -19,6 +20,7 @@ namespace Tulip
         ~Scene();
 
         Entity CreateEntity(const std::string& name = std::string());
+        Entity CreateEntityWithUUID(UUID uuid, const std::string& name = std::string());
         void DestroyEntity(Entity entity);
 
         void OnRuntimeStart();

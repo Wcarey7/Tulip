@@ -170,6 +170,7 @@
     <ClInclude Include="src\Tulip\Core\PlatformDetection.h" />
     <ClInclude Include="src\Tulip\Core\Timer.h" />
     <ClInclude Include="src\Tulip\Core\Timestep.h" />
+    <ClInclude Include="src\Tulip\Core\UUID.h" />
     <ClInclude Include="src\Tulip\Core\Window.h" />
     <ClInclude Include="src\Tulip\Debug\Instrumentor.h" />
     <ClInclude Include="src\Tulip\Events\ApplicationEvent.h" />
@@ -636,6 +637,7 @@
     <ClCompile Include="src\Tulip\Core\Layer.cpp" />
     <ClCompile Include="src\Tulip\Core\LayerStack.cpp" />
     <ClCompile Include="src\Tulip\Core\Log.cpp" />
+    <ClCompile Include="src\Tulip\Core\UUID.cpp" />
     <ClCompile Include="src\Tulip\Core\Window.cpp" />
     <ClCompile Include="src\Tulip\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\Tulip\ImGui\ImGuiLayer.cpp" />
