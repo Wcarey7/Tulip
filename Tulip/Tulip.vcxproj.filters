@@ -87,6 +87,9 @@
     <ClInclude Include="src\Platform\OpenGL\OpenGLTexture.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLUniformBuffer.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
@@ -127,6 +130,9 @@
       <Filter>src\Tulip\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Tulip\Core\PlatformDetection.h">
+      <Filter>src\Tulip\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Tulip\Core\Timer.h">
       <Filter>src\Tulip\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Tulip\Core\Timestep.h">
@@ -193,6 +199,9 @@
       <Filter>src\Tulip\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Tulip\Renderer\Texture.h">
+      <Filter>src\Tulip\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Tulip\Renderer\UniformBuffer.h">
       <Filter>src\Tulip\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Tulip\Renderer\VertexArray.h">
@@ -1476,9 +1485,6 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\Tulip\Core\Timer.h" />
-    <ClInclude Include="src\Tulip\Renderer\UniformBuffer.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLUniformBuffer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
@@ -1497,6 +1503,9 @@
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLTexture.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLUniformBuffer.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp">
@@ -1571,6 +1580,9 @@
     <ClCompile Include="src\Tulip\Renderer\Texture.cpp">
       <Filter>src\Tulip\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Tulip\Renderer\UniformBuffer.cpp">
+      <Filter>src\Tulip\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\Tulip\Renderer\VertexArray.cpp">
       <Filter>src\Tulip\Renderer</Filter>
     </ClCompile>
@@ -1595,7 +1607,5 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\Tulip\Renderer\UniformBuffer.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLUniformBuffer.cpp" />
   </ItemGroup>
 </Project>

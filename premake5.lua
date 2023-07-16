@@ -28,6 +28,7 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 group "dependencies"
     include "vendor/premake"
+    include "Tulip/vendor/Box2D"
     include "Tulip/vendor/GLFW"
     include "Tulip/vendor/Glad"
     include "Tulip/vendor/imgui"
