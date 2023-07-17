@@ -418,6 +418,9 @@ namespace Tulip
 
     void EditorLayer::OpenScene(const std::filesystem::path& path)
     {
+        if (m_SceneState != SceneState::Edit)
+            OnSceneStop();
+
         if (path.extension().string() != ".tulip")
         {
             TULIP_WARN("Could not load {0} - not a scene file", path.filename().string());
