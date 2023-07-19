@@ -36,6 +36,7 @@ namespace Tulip
         void SerializeScene(Ref<Scene> scene, const std::filesystem::path& path);
 
         void OnScenePlay();
+        void OnSceneSimulate();
         void OnSceneStop();
 
         void OnDuplicateEntity();
@@ -80,7 +81,8 @@ namespace Tulip
         enum class SceneState
         {
             Edit = 0,
-            Play = 1
+            Play = 1,
+            Simulate = 2
         };
         SceneState m_SceneState = SceneState::Edit;
 
@@ -91,5 +93,6 @@ namespace Tulip
         // Editor Resources
         Ref<Texture2D> m_IconPlay;
         Ref<Texture2D> m_IconStop;
+        Ref<Texture2D> m_IconSimulate;
     };
 }
