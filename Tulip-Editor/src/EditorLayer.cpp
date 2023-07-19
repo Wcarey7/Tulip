@@ -359,7 +359,10 @@ namespace Tulip
     void EditorLayer::OnEvent(Event& e)
     {
         m_CameraController.OnEvent(e);
-        m_EditorCamera.OnEvent(e);
+        if (m_SceneState == SceneState::Edit)
+        {
+            m_EditorCamera.OnEvent(e);
+        }
 
         EventDispatcher dispatcher(e);
         dispatcher.Dispatch<KeyPressedEvent>(TULIP_BIND_EVENT_FN(EditorLayer::OnKeyPressed));
