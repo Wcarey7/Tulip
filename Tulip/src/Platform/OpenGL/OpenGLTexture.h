@@ -26,7 +26,7 @@ namespace Tulip
 
         virtual bool operator==(const Texture& other) const override
         {
-            return m_RendererID == ((OpenGLTexture2D&)other).m_RendererID;
+            return m_RendererID == other.GetRendererID();
         }
 
     private:
