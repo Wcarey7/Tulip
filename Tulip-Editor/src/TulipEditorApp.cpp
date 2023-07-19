@@ -9,8 +9,8 @@ namespace Tulip
     class TulipEditor : public Application
     {
     public:
-        TulipEditor(ApplicationCommandLineArgs args)
-            : Application("Tulip Editor", args)
+        TulipEditor(const ApplicationSpecification& spec)
+            : Application(spec)
         {
             PushLayer(new EditorLayer());
         }
@@ -24,6 +24,10 @@ namespace Tulip
 
     Application* CreateApplication(ApplicationCommandLineArgs args)
     {
-        return new TulipEditor(args);
+        ApplicationSpecification spec;
+        spec.Name = "Tulip-Editor";
+        spec.CommandLineArgs = args;
+
+        return new TulipEditor(spec);
     }
 }

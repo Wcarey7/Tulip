@@ -7,7 +7,8 @@
 class Sandbox : public Tulip::Application
 {
 public:
-    Sandbox()
+    Sandbox(const Tulip::ApplicationSpecification& specification)
+        : Tulip::Application(specification)
     {
         //PushLayer(new ExampleLayer());
         PushLayer(new Sandbox2D());
@@ -20,7 +21,12 @@ public:
 };
 
 
-Tulip::Application* Tulip::CreateApplication()
+Tulip::Application* Tulip::CreateApplication(Tulip::ApplicationCommandLineArgs args)
 {
-    return new Sandbox();
+    ApplicationSpecification spec;
+    spec.Name = "Sandbox";
+    spec.WorkingDirectory = "../Tulip-Editor";
+    spec.CommandLineArgs = args;
+
+    return new Sandbox(spec);
 }
