@@ -46,6 +46,7 @@ namespace Tulip
 
         // 1.778f == 16:9 aspect ratio
         m_EditorCamera = EditorCamera(30.0f, 1.778f, 0.1f, 1000.0f);
+        Renderer2D::SetLineWidth(4.0f);
     }
 
     void EditorLayer::OnDetach()
@@ -504,6 +505,13 @@ namespace Tulip
                     Renderer2D::DrawCircle(transform, glm::vec4(0, 1, 0, 1), 0.01f);
                 }
             }
+        }
+
+        // Draw selected entity outline 
+        if (Entity selectedEntity = m_SceneHierarchyPanel.GetSelectedEntity())
+        {
+            const TransformComponent& transform = selectedEntity.GetComponent<TransformComponent>();
+            Renderer2D::DrawRect(transform.GetTransform(), glm::vec4(1.0f, 0.5f, 0.0f, 1.0f));
         }
 
         Renderer2D::EndScene();
