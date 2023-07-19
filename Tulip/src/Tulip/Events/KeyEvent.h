@@ -3,6 +3,7 @@
 #include "tulippch.h"
 #include "Tulip/Events/Event.h"
 #include "Tulip/Core/Input.h"
+#include "Tulip/Core/KeyCodes.h"
 
 
 namespace Tulip 
@@ -10,12 +11,12 @@ namespace Tulip
     class KeyEvent : public Event
     {
     public:
-        inline KeyCode GetKeyCode() const { return m_KeyCode; }
+        KeyCode GetKeyCode() const { return m_KeyCode; }
 
         EVENT_CLASS_CATEGORY(EventCategoryKeyboard | EventCategoryInput)
 
     protected:
-        KeyEvent(KeyCode Keycode)
+        KeyEvent(const KeyCode Keycode)
             : m_KeyCode(Keycode) {}
 
         KeyCode m_KeyCode;
@@ -24,28 +25,28 @@ namespace Tulip
     class KeyPressedEvent : public KeyEvent
     {
     public:
-        KeyPressedEvent(KeyCode keycode, int repeatCount)
-            : KeyEvent(keycode), m_RepeatCount(repeatCount) {}
+        KeyPressedEvent(const KeyCode keycode, bool isRepeat = false)
+            : KeyEvent(keycode),  m_IsRepeat(isRepeat) {}
 
-        inline int GetRepeatCount() const { return m_RepeatCount; }
+        bool IsRepeat() const { return m_IsRepeat; }
 
         std::string ToString() const override
         {
             std::stringstream ss;
-            ss << "KeyPressedEvent: " << m_KeyCode << " (" << m_RepeatCount << " repeats)";
+            ss << "KeyPressedEvent: " << m_KeyCode << " (repeat = " << m_IsRepeat << ")";
             return ss.str();
         }
         EVENT_CLASS_TYPE(KeyPressed)
 
     private:
-        int m_RepeatCount;
+        bool m_IsRepeat;
 
     };
 
     class KeyReleasedEvent : public KeyEvent
     {
     public:
-        KeyReleasedEvent(KeyCode keycode)
+        KeyReleasedEvent(const KeyCode keycode)
             : KeyEvent(keycode) {}
 
         std::string ToString() const override
@@ -60,7 +61,7 @@ namespace Tulip
     class KeyTypedEvent : public KeyEvent
     {
     public:
-        KeyTypedEvent(KeyCode keycode)
+        KeyTypedEvent(const KeyCode keycode)
             : KeyEvent(keycode) {}
 
         std::string ToString() const override

@@ -2,8 +2,9 @@
 
 #include "tulippch.h"
 #include "Tulip/Core/Core.h"
-#include "spdlog/fmt/ostr.h"
-#include "spdlog/pattern_formatter.h"
+#include "Tulip/Debug/Instrumentor.h"
+#include <spdlog/fmt/ostr.h>
+#include <spdlog/pattern_formatter.h>
 
 
 namespace Tulip 

@@ -2,6 +2,7 @@
 
 #include "Tulip/Events/Event.h"
 #include "Tulip/Core/Input.h"
+#include "Tulip/Core/MouseButtonCodes.h"
 
 
 namespace Tulip 
@@ -9,11 +10,11 @@ namespace Tulip
     class MouseMovedEvent : public Event
     {
     public:
-        MouseMovedEvent(float x, float y)
+        MouseMovedEvent(const float x, const float y)
             : m_MouseX(x), m_MouseY(y) {}
 
-        inline float GetX() const { return m_MouseX; }
-        inline float GetY() const { return m_MouseY; }
+        float GetX() const { return m_MouseX; }
+        float GetY() const { return m_MouseY; }
 
         std::string ToString() const override
         {
@@ -32,11 +33,11 @@ namespace Tulip
     class MouseScrolledEvent : public Event
     {
     public:
-        MouseScrolledEvent(float xOffset, float yOffset)
+        MouseScrolledEvent(const float xOffset, const float yOffset)
             : m_XOffset(xOffset), m_YOffset(yOffset) {}
 
-        inline float GetXOffset() const { return m_XOffset; }
-        inline float GetYOffset() const { return m_YOffset; }
+        float GetXOffset() const { return m_XOffset; }
+        float GetYOffset() const { return m_YOffset; }
 
         std::string ToString() const override
         {
@@ -60,7 +61,7 @@ namespace Tulip
         EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput | EventCategoryMouseButton)
 
     protected:
-        MouseButtonEvent(MouseCode button)
+        MouseButtonEvent(const MouseCode button)
             : m_Button(button) {}
 
         MouseCode m_Button;
@@ -69,7 +70,7 @@ namespace Tulip
     class MouseButtonPressedEvent : public MouseButtonEvent
     {
     public:
-        MouseButtonPressedEvent(MouseCode button)
+        MouseButtonPressedEvent(const MouseCode button)
             : MouseButtonEvent(button) {}
 
         std::string ToString() const override
@@ -85,7 +86,7 @@ namespace Tulip
     class MouseButtonReleasedEvent : public MouseButtonEvent
     {
     public:
-        MouseButtonReleasedEvent(MouseCode button)
+        MouseButtonReleasedEvent(const MouseCode button)
             : MouseButtonEvent(button) {}
 
         std::string ToString() const override
